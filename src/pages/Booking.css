@@ -1,0 +1,113 @@
+.booking-page {
+    padding: 2rem 5%;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .booking-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .page-title {
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .movie-info-section {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: rgba(42, 41, 74, 0.6);
+    padding: 1.5rem;
+    border-radius: 10px;
+    align-items: flex-start;
+  }
+  
+  .movie-poster {
+    width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    aspect-ratio: 2/3;
+    object-fit: cover;
+  }
+  
+  .movie-details {
+    flex: 1;
+  }
+  
+  .movie-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .showtimes-section h3 {
+    color: var(--text-main);
+    margin-bottom: 1rem;
+  }
+  
+  .showtimes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  
+  .time-badge {
+    background: var(--secondary);
+    color: var(--teal);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    border: 1px solid var(--teal);
+    transition: all 0.3s;
+  }
+  
+  .time-badge:hover {
+    background: var(--teal);
+    color: var(--dark-bg);
+  }
+  
+  .cinema-hall-container {
+    background: rgba(42, 41, 74, 0.6);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+  }
+  
+  .error-page {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-main);
+  }
+  
+  @media (max-width: 900px) {
+    .movie-info-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .movie-poster {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .booking-page {
+      padding: 1.5rem;
+    }
+    
+    .movie-info-section,
+    .cinema-hall-container {
+      padding: 1rem;
+    }
+    
+    .time-badge {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
