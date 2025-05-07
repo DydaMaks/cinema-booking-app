@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { movies } from '../data/movies';
 import CinemaHall from '../components/CinemaHall';
@@ -5,6 +6,7 @@ import './Booking.css';
 
 const Booking = () => {
   const { movieId } = useParams();
+  const [selectedTime, setSelectedTime] = useState('');
   const movie = movies.find(m => m.id === parseInt(movieId));
 
   if (!movie) {
@@ -16,6 +18,10 @@ const Booking = () => {
     );
   }
 
+  const handleTimeSelect = (time) => {
+    setSelectedTime(time);
+  };
+
   return (
     <div className="booking-page">
       <div className="booking-container">
@@ -26,19 +32,31 @@ const Booking = () => {
           <div className="movie-details">
             <p className="movie-description">{movie.description}</p>
             <div className="showtimes-section">
-              <h3>Доступні сеанси:</h3>
+              <h3>Оберіть час сеансу:</h3>
               <div className="showtimes">
                 {movie.showtimes.map((time, index) => (
-                  <span key={index} className="time-badge">{time}</span>
+                  <button
+                    key={index}
+                    className={`time-badge ${selectedTime === time ? 'selected' : ''}`}
+                    onClick={() => handleTimeSelect(time)}
+                  >
+                    {time}
+                  </button>
                 ))}
               </div>
+              {selectedTime && (
+                <p className="selected-time-info">Обраний час: <strong>{selectedTime}</strong></p>
+              )}
             </div>
           </div>
         </div>
 
-        <div className="cinema-hall-container">
-          <CinemaHall movieId={movieId} />
-        </div>
+        {selectedTime && (
+          <div className="cinema-hall-container">
+            <h3>Оберіть місця для сеансу о {selectedTime}</h3>
+            <CinemaHall movieId={movieId} />
+          </div>
+        )}
       </div>
     </div>
   );

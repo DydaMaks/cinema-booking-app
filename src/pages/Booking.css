@@ -95,6 +95,48 @@
       max-width: 300px;
     }
   }
+  .time-badge {
+    background: var(--secondary);
+    color: var(--teal);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    border: 1px solid var(--teal);
+    transition: all 0.3s;
+    cursor: pointer;
+    margin: 0.3rem;
+  }
+  
+  .time-badge.selected {
+    background: var(--teal);
+    color: var(--dark-bg);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 180, 216, 0.3);
+  }
+  
+  .time-badge:hover:not(.selected) {
+    background: rgba(0, 180, 216, 0.1);
+  }
+  
+  .selected-time-info {
+    margin-top: 1rem;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    background: rgba(255, 137, 6, 0.1);
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  .cinema-hall-container {
+    margin-top: 2rem;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   
   @media (max-width: 600px) {
     .booking-page {
