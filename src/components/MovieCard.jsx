@@ -5,22 +5,27 @@ import styles from './MovieCard.module.css';
 const MovieCard = ({ movie }) => {
   return (
     <div className={styles.card}>
-      <img src={movie.poster} alt={movie.title} className={styles.poster} />
+      <div className={styles.posterContainer}>
+        <img src={movie.poster} alt={movie.title} className={styles.poster} />
+        <div className={styles.genreBadge}>{movie.genre}</div>
+      </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{movie.title}</h3>
         <p className={styles.description}>{movie.description}</p>
-        <div className={styles.details}>
-          <span className={styles.genre}>{movie.genre}</span>
-          <div className={styles.showtimes}>
-            {movie.showtimes.map((time, index) => (
-              <span key={index} className={styles.time}>{time}</span>
-            ))}
-          </div>
+        <div className={styles.showtimes}>
+          {movie.showtimes.map((time, index) => (
+            <button key={index} className={styles.timeButton}>
+              {time}
+            </button>
+          ))}
         </div>
+        <button className={styles.bookButton}>Забронювати</button>
       </div>
     </div>
   );
 };
+
+// ... пропти залишаються незмінними ...
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({

@@ -1,61 +1,63 @@
-.card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: white;
+.container {
+    padding: 30px 0;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  .searchContainer {
+    position: relative;
+    margin-bottom: 30px;
   }
   
-  .poster {
+  .search {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    padding: 15px 20px 15px 45px;
+    border: 2px solid var(--light-olive);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: var(--dark-brown);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(101, 82, 71, 0.05);
   }
   
-  .content {
-    padding: 15px;
+  .search:focus {
+    outline: none;
+    border-color: var(--olive-green);
+    box-shadow: 0 4px 15px rgba(101, 82, 71, 0.1);
   }
   
-  .title {
-    margin: 0 0 10px 0;
-    color: #333;
+  .searchIcon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medium-brown);
   }
   
-  .description {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 15px;
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
   }
   
-  .details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .search {
+      padding: 12px 20px 12px 40px;
+    }
   }
   
-  .genre {
-    background: #f0f0f0;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    color: #555;
-  }
-  
-  .showtimes {
-    display: flex;
-    gap: 5px;
-  }
-  
-  .time {
-    background: #4CAF50;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .container {
+      padding: 20px 15px;
+    }
   }
