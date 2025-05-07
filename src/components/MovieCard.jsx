@@ -1,46 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './MovieCard.module.css';
-
+import { Link } from 'react-router-dom';
+import styles from '../components/MovieCard.module.css';
 
 const MovieCard = ({ movie }) => {
-  return (
-    <div className={styles.card}>
-      <div className={styles.posterContainer}>
-        <img 
-          src={movie.poster} 
-          alt={movie.title} 
-          className={styles.poster}
-        />
-      </div>
-      <div className={styles.content}>
-        <h3 className={styles.title}>{movie.title}</h3>
-        <p className={styles.description}>{movie.description}</p>
-        
-        <div className={styles.showtimes}>
-          {movie.showtimes.map((time, index) => (
-            <button key={index} className={styles.timeButton}>
-              {time}
-            </button>
-          ))}
+    return (
+      <div className={styles.card}>
+        <div className={styles.posterContainer}>
+          <img 
+            src={movie.poster} 
+            alt={movie.title} 
+            className={styles.poster}
+          />
+          <div className={styles.genreBadge}>{movie.genre}</div>
         </div>
         
-        <button className={styles.bookButton}>
-          Забронювати
-        </button>
+        <div className={styles.content}>
+          <h3 className={styles.title}>{movie.title}</h3>
+          <p className={styles.description}>{movie.description}</p>
+          
+          <div className={styles.showtimes}>
+            {movie.showtimes.map((time, index) => (
+              <button key={index} className={styles.timeButton}>
+                {time}
+              </button>
+            ))}
+          </div>
+          
+          <Link 
+            to={`/booking/${movie.id}`} 
+            className={styles.bookButton}
+          >
+            Забронювати
+          </Link>
+        </div>
       </div>
-    </div>
-  );
-};
-
-MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    showtimes: PropTypes.arrayOf(PropTypes.string).isRequired
-  }).isRequired
-};
-
-export default MovieCard;
+    );
+  };
+  
+  export default MovieCard;

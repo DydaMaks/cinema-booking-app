@@ -1,177 +1,179 @@
 .card {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    background: #2a2942;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    height: 100%;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .posterContainer {
+  width: 280px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(101, 82, 71, 0.15);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(101, 82, 71, 0.2);
+}
+
+.posterContainer {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .poster {
+  transform: scale(1.05);
+}
+
+.genreBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--accent);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 12px 0;
+  color: var(--text-main);
+  font-size: 1.25rem;
+  font-weight: 700;
+  min-height: 3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.showtimes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  min-height: 40px;
+}
+
+.timeButton {
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid var(--teal);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 70px;
+  text-align: center;
+}
+
+.timeButton:hover {
+  background: var(--teal);
+  color: var(--dark-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 180, 216, 0.3);
+}
+
+.bookButton {
+    /* Існуючі стилі */
+    display: flex;          /* Додаємо flex */
+    justify-content: center; /* Горизонтальне вирівнювання */
+    align-items: center;    /* Вертикальне вирівнювання */
+    text-align: center;     /* Додаткове вирівнювання тексту */
+    gap: 8px;              /* Відступ між іконкою та текстом (якщо буде іконка) */
+    
+    /* Решта ваших стилів залишаються незмінними */
     width: 100%;
-    height: 400px;
-    overflow: hidden;
-  }
-  
-  .poster {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  .card:hover .poster {
-    transform: scale(1.05);
-  }
-  
-  .content {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .title {
-    font-size: 1.2rem;
-    margin: 0 0 12px 0;
-    color: #fff;
-    min-height: 56px; /* 2 рядки тексту */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .description {
-    color: #b8b8b8;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .showtimes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-    min-height: 36px;
-  }
-  
-  .timeButton {
     background: transparent;
-    color: #00b4d8;
-    border: 1px solid #00b4d8;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 70px;
-    text-align: center;
-  }
-  
-  .timeButton:hover {
-    background: #00b4d8;
-    color: #1a1a2e;
-  }
-  
-  .bookButton {
-    width: 100%;
-    background: #ff8906;
-    color: #fff;
-    border: none;
+    color: var(--gold);
+    border: 1px solid var(--gold);
     padding: 12px;
-    border-radius: 6px;
+    border-radius: 25px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: auto;
-  }
-  
-  .bookButton:hover {
-    background: #e53170;
-  }
-  /* Додаємо в кінець файлу */
-
-/* Анімації */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  @keyframes scaleUp {
-    from { transform: scale(0.95); }
-    to { transform: scale(1); }
-  }
-  
-  .card {
-    animation: fadeIn 0.6s ease-out forwards, scaleUp 0.4s ease-out;
-    opacity: 0; /* Початково невидимий для анімації */
-  }
-  
-  .card:nth-child(1) { animation-delay: 0.1s; }
-  .card:nth-child(2) { animation-delay: 0.2s; }
-  .card:nth-child(3) { animation-delay: 0.3s; }
-  /* Додайте стільки записів, скільки очікуєте карток */
-  
-  .poster {
-    transition: transform 0.5s ease, filter 0.3s ease;
-  }
-  
-  .card:hover .poster {
-    transform: scale(1.03);
-    filter: brightness(1.05);
-  }
-  
-  .timeButton {
-    transition: all 0.2s ease;
-    transform: translateY(0);
-  }
-  
-  .timeButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 180, 216, 0.3);
-  }
-  
-  .bookButton {
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
-  }
-  
-  .bookButton::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: 0.5s;
-  }
-  
-  .bookButton:hover::after {
-    left: 100%;
+    font-size: 0.9rem;
   }
   
   .bookButton:hover {
+    background: rgba(255, 215, 0, 0.1);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 137, 6, 0.4);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+    border-color: var(--accent);
+    color: var(--accent);
   }
+
+.bookButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+  transition: 0.5s;
+}
+
+.bookButton:hover::before {
+  left: 100%;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 240px;
+  }
+  
+  .posterContainer {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .posterContainer {
+    height: 400px;
+  }
+}
