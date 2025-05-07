@@ -6,12 +6,16 @@ const MovieCard = ({ movie }) => {
   return (
     <div className={styles.card}>
       <div className={styles.posterContainer}>
-        <img src={movie.poster} alt={movie.title} className={styles.poster} />
-        <div className={styles.genreBadge}>{movie.genre}</div>
+        <img 
+          src={movie.poster} 
+          alt={movie.title} 
+          className={styles.poster}
+        />
       </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{movie.title}</h3>
         <p className={styles.description}>{movie.description}</p>
+        
         <div className={styles.showtimes}>
           {movie.showtimes.map((time, index) => (
             <button key={index} className={styles.timeButton}>
@@ -19,13 +23,14 @@ const MovieCard = ({ movie }) => {
             </button>
           ))}
         </div>
-        <button className={styles.bookButton}>Забронювати</button>
+        
+        <button className={styles.bookButton}>
+          Забронювати
+        </button>
       </div>
     </div>
   );
 };
-
-// ... пропти залишаються незмінними ...
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
@@ -33,7 +38,6 @@ MovieCard.propTypes = {
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
     showtimes: PropTypes.arrayOf(PropTypes.string).isRequired
   }).isRequired
 };

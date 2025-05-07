@@ -1,13 +1,21 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  /* Основні кольори */
+  --dark-bg: #1a1a2e;        /* Глибокий синьо-чорний */
+  --card-bg: #16213e;        /* Темно-синій для карток */
+  --accent: #e94560;         /* Яскраво-кораловий (акцентний) */
+  --secondary: #0f3460;      /* Темно-синій (другий план) */
+  --text-main: #f1f1f1;      /* Білий основний текст */
+  --text-secondary: #b8b8b8; /* Сірий другорядний текст */
+  
+  /* Додаткові акценти */
+  --gold: #ffd700;           /* Золотий для рейтингів */
+  --teal: #00b4d8;           /* Бірюзовий для інтерактивних елементів */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: var(--cream);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--dark-brown);
 }
