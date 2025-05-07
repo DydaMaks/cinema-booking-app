@@ -15,12 +15,12 @@ function App() {
           </nav>
         </header>
         
-        <main>
+        <div className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/booking/:movieId" element={<Booking />} />
           </Routes>
-        </main>
+        </div>
       </div>
     </Router>
   );

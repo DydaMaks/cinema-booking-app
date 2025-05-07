@@ -1,123 +1,109 @@
 .container {
-    padding: 30px 0;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex: 1;
   }
   
-  .searchContainer {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
-    padding: 0 1.5rem;
+  .sidebar {
+    width: 280px;
+    padding: 20px;
+    background: rgba(26, 25, 53, 0.8);
+    border-right: 1px solid rgba(255, 137, 6, 0.1);
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
   }
   
-  .searchInput {
-    width: 100%;
-    padding: 0.9rem 1.2rem 0.9rem 3.2rem;
-    background: rgba(30, 29, 53, 0.8);
-    border: 1px solid rgba(255, 137, 6, 0.3);
-    border-radius: 50px;
-    font-size: 1rem;
-    color: var(--text-main);
-    transition: all 0.4s ease;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ff8906' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: 1.2rem center;
-    background-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  .filterSection, .sortSection {
+    margin-bottom: 30px;
   }
   
-  .searchInput::placeholder {
+  .filterSection h3, .sortSection h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--secondary);
+  }
+  
+  .filterGroup {
+    margin-bottom: 20px;
+  }
+  
+  .filterGroup label {
+    display: block;
+    margin-bottom: 8px;
     color: var(--text-secondary);
-    opacity: 0.8;
+    font-size: 0.9rem;
   }
   
-  .searchInput:focus {
+  .searchInput, .selectInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--secondary);
+    background: rgba(42, 41, 74, 0.8);
+    color: var(--text-main);
+    font-size: 0.9rem;
+  }
+  
+  .searchInput:focus, .selectInput:focus {
     outline: none;
     border-color: var(--accent);
-    background-color: rgba(42, 41, 74, 0.8);
-    box-shadow: 0 0 0 3px rgba(255, 137, 6, 0.15);
+    box-shadow: 0 0 0 2px rgba(255, 137, 6, 0.2);
+  }
+  
+  .rangeInput {
+    width: 100%;
+    margin-top: 5px;
+    accent-color: var(--accent);
+  }
+  
+  .moviesContainer {
+    flex: 1;
+    padding: 20px;
   }
   
   .moviesGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    align-items: stretch;
-  }
-  
-  .moviesHorizontal {
-    display: flex;
-    overflow-x: auto;
-    padding: 20px 0;
-    gap: 20px;
-    scroll-snap-type: x proximity;
-    scroll-padding: 0 2rem;
-  }
-  
-  .moviesHorizontal .card {
-    flex: 0 0 280px;
-    scroll-snap-align: start;
+    gap: 25px;
+    padding: 10px;
   }
   
   .noResults {
     text-align: center;
-    padding: 3rem;
+    padding: 50px;
     color: var(--text-secondary);
     grid-column: 1 / -1;
   }
   
-  .noResultsIcon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--accent);
-    opacity: 0.7;
-  }
-  
-  .noResultsText {
-    font-size: 1.1rem;
-    margin-top: 0.5rem;
-  }
-  
   @media (max-width: 1024px) {
-    .moviesGrid {
-      gap: 25px;
+    .sidebar {
+      width: 240px;
+      padding: 15px;
     }
   }
   
   @media (max-width: 768px) {
     .container {
-      padding: 20px 0;
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      width: 100%;
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 137, 6, 0.1);
     }
     
     .moviesGrid {
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-    }
-    
-    .searchContainer {
-      padding: 0 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .moviesHorizontal {
-      gap: 15px;
-      padding: 15px 0;
     }
   }
   
   @media (max-width: 480px) {
     .moviesGrid {
       grid-template-columns: 1fr;
-      gap: 15px;
-    }
-    
-    .searchInput {
-      padding: 0.8rem 1rem 0.8rem 2.8rem;
-      background-position: 1rem center;
-    }
-    
-    .noResults {
-      padding: 2rem 1rem;
     }
   }
