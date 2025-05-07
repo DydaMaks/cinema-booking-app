@@ -108,14 +108,14 @@
 }
 
 .bookButton {
-    /* Існуючі стилі */
-    display: flex;          /* Додаємо flex */
-    justify-content: center; /* Горизонтальне вирівнювання */
-    align-items: center;    /* Вертикальне вирівнювання */
-    text-align: center;     /* Додаткове вирівнювання тексту */
-    gap: 8px;              /* Відступ між іконкою та текстом (якщо буде іконка) */
     
-    /* Решта ваших стилів залишаються незмінними */
+    display: flex;          
+    justify-content: center; 
+    align-items: center;    
+    text-align: center;     
+    gap: 8px;           
+    
+   
     width: 100%;
     background: transparent;
     color: var(--gold);
@@ -177,3 +177,21 @@
     height: 400px;
   }
 }
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+  }
+  
+  .star {
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin-right: 2px;
+  }
+  
+  .ratingValue {
+    margin-left: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
