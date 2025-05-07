@@ -6,8 +6,17 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Кінотеатр "Синема"</h1>
-      <MovieList movies={movies} />
+      <header className="header">
+        <h1 className="logo">Кінотеатр "Панорама"</h1>
+        <nav className="nav">
+          <a href="#now-playing" className="navLink active">Сьогодні у кіно</a>
+          <a href="#soon" className="navLink">Скоро</a>
+          <a href="#contacts" className="navLink">Контакти</a>
+        </nav>
+      </header>
+      <main>
+        <MovieList movies={movies} />
+      </main>
     </div>
   );
 }
