@@ -8,7 +8,7 @@ function App() {
     <Router>
       <div className="app">
         <header className="app-header">
-          <Link to="/" className="logo">Кінотеатр "Синема"</Link>
+          <Link to="/" className="logo">Кінотеатр "Панорама"</Link>
           <nav className="nav">
             <Link to="/" className="nav-link">Фільми</Link>
             <Link to="/booking/1" className="nav-link">Бронювання</Link>

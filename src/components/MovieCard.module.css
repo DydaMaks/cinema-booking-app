@@ -185,13 +185,28 @@
   }
   
   .star {
-    color: var(--gold);
+    color: var(--text-secondary);
     font-size: 1.1rem;
     margin-right: 2px;
+    position: relative;
+  }
+  
+  .star.full {
+    color: var(--gold);
+  }
+  
+  .star.half::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: var(--gold);
   }
   
   .ratingValue {
     margin-left: 8px;
     color: var(--text-secondary);
     font-size: 0.9rem;
+    font-weight: bold;
   }

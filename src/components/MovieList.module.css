@@ -1,9 +1,9 @@
 .container {
     display: flex;
     flex: 1;
-  }
-  
-  .sidebar {
+}
+
+.sidebar {
     width: 280px;
     padding: 20px;
     background: rgba(26, 25, 53, 0.8);
@@ -12,31 +12,31 @@
     top: 80px;
     height: calc(100vh - 80px);
     overflow-y: auto;
-  }
-  
-  .filterSection, .sortSection {
+}
+
+.filterSection, .sortSection {
     margin-bottom: 30px;
-  }
-  
-  .filterSection h3, .sortSection h3 {
+}
+
+.filterSection h3, .sortSection h3 {
     color: var(--gold);
     margin-bottom: 15px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--secondary);
-  }
-  
-  .filterGroup {
+}
+
+.filterGroup {
     margin-bottom: 20px;
-  }
-  
-  .filterGroup label {
+}
+
+.filterGroup label {
     display: block;
     margin-bottom: 8px;
     color: var(--text-secondary);
     font-size: 0.9rem;
-  }
-  
-  .searchInput, .selectInput {
+}
+
+.searchInput, .selectInput {
     width: 100%;
     padding: 10px;
     border-radius: 6px;
@@ -44,66 +44,86 @@
     background: rgba(42, 41, 74, 0.8);
     color: var(--text-main);
     font-size: 0.9rem;
-  }
-  
-  .searchInput:focus, .selectInput:focus {
+}
+
+.searchInput:focus, .selectInput:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 2px rgba(255, 137, 6, 0.2);
-  }
-  
-  .rangeInput {
+}
+
+.rangeInput {
     width: 100%;
     margin-top: 5px;
     accent-color: var(--accent);
-  }
-  
-  .moviesContainer {
+}
+
+.moviesContainer {
     flex: 1;
     padding: 20px;
-  }
-  
-  .moviesGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.moviesFlex {
+    display: flex;
+    flex-wrap: wrap;
     gap: 25px;
-    padding: 10px;
-  }
-  
-  .noResults {
+    justify-content: flex-start; 
+}
+
+.movieItem {
+    flex: 0 1 calc(25% - 25px); 
+    min-width: 220px; 
+    max-width: 280px; 
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movieItem img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.noResults {
     text-align: center;
     padding: 50px;
     color: var(--text-secondary);
-    grid-column: 1 / -1;
-  }
-  
-  @media (max-width: 1024px) {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
     .sidebar {
-      width: 240px;
-      padding: 15px;
+        width: 240px;
+        padding: 15px;
     }
-  }
-  
-  @media (max-width: 768px) {
+
+    .moviesFlex {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
     .container {
-      flex-direction: column;
+        flex-direction: column;
     }
-    
+
     .sidebar {
-      width: 100%;
-      position: static;
-      height: auto;
-      border-right: none;
-      border-bottom: 1px solid rgba(255, 137, 6, 0.1);
+        width: 100%;
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 137, 6, 0.1);
     }
-    
-    .moviesGrid {
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+    .moviesFlex {
+        flex-direction: column;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .moviesGrid {
-      grid-template-columns: 1fr;
+}
+
+@media (max-width: 480px) {
+    .moviesFlex {
+        flex-direction: column;
     }
-  }
+}

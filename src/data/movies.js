@@ -3,10 +3,10 @@ export const movies = [
       id: 1,
       title: "Дюна: Частина друга",
       poster: "/posters/duna.jpg",
-      description: "Продовження епічної саги про Пола Атріда.",
+      description: "Продовження саги Пола Атріда.",
       genre: "Фантастика",
       showtimes: ["10:00", "14:30", "19:00"],
-      rating: 4.8
+      rating: 4.0
     },
     {
       id: 2,
@@ -15,7 +15,7 @@ export const movies = [
       description: "Історія створення атомної бомби.",
       genre: "Драма",
       showtimes: ["11:15", "16:00", "20:45"],
-      rating: 4.9
+      rating: 4.5
     },
     {
       id: 3,
@@ -33,13 +33,13 @@ export const movies = [
       description: "Подорож крізь простір і час.",
       genre: "Фантастика",
       showtimes: ["12:00", "15:45", "21:00"],
-      rating: 4.9
+      rating: 5
     },
     {
       id: 5,
       title: "Початок",
       poster: "/posters/inception.jpg",
-      description: "Подорож у свідомість через сновидіння.",
+      description: "Подорож у свідомість.",
       genre: "Фантастика",
       showtimes: ["10:30", "15:00", "19:30"],
       rating: 4.7

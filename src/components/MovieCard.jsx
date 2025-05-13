@@ -6,24 +6,28 @@ const MovieCard = ({ movie }) => {
     const stars = [];
     const fullStars = Math.floor(movie.rating);
     const hasHalfStar = movie.rating % 1 >= 0.5;
-    
+
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
-        stars.push(<span key={i} className={styles.star}>&#9733;</span>);
+        stars.push(<span key={i} className={`${styles.star} ${styles.full}`}>★</span>);
       } else if (i === fullStars + 1 && hasHalfStar) {
-        stars.push(<span key={i} className={styles.star}>&#9734;</span>);
+        stars.push(<span key={i} className={`${styles.star} ${styles.half}`}>★</span>);
       } else {
-        stars.push(<span key={i} className={styles.star}>&#9734;</span>);
+        stars.push(<span key={i} className={styles.star}>★</span>);
       }
     }
-    
+
     return stars;
   };
 
   return (
     <div className={styles.card}>
       <div className={styles.posterContainer}>
-        <img src={movie.poster} alt={movie.title} className={styles.poster} />
+        <img 
+          src={movie.poster} 
+          alt={movie.title} 
+          className={styles.poster}
+        />
         <div className={styles.genreBadge}>{movie.genre}</div>
       </div>
       
@@ -43,7 +47,10 @@ const MovieCard = ({ movie }) => {
           ))}
         </div>
         
-        <Link to={`/booking/${movie.id}`} className={styles.bookButton}>
+        <Link 
+          to={`/booking/${movie.id}`} 
+          className={styles.bookButton}
+        >
           Забронювати
         </Link>
       </div>

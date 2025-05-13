@@ -68,7 +68,7 @@ const MovieList = () => {
               type="range"
               min="0"
               max="5"
-              step="0.1"
+              step="0.5"
               value={minRating}
               onChange={(e) => setMinRating(parseFloat(e.target.value))}
               className={styles.rangeInput}
@@ -96,7 +96,7 @@ const MovieList = () => {
 
       <main className={styles.moviesContainer}>
         {filteredMovies.length > 0 ? (
-          <div className={styles.moviesGrid}>
+          <div className={styles.moviesFlex}>
             {filteredMovies.map(movie => (
               <MovieCard key={movie.id} movie={movie} />
             ))}
