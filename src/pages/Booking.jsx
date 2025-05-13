@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { movies } from '../data/movies';
 import CinemaHall from '../components/CinemaHall';
@@ -7,7 +7,18 @@ import './Booking.css';
 const Booking = () => {
   const { movieId } = useParams();
   const [selectedTime, setSelectedTime] = useState('');
-  const movie = movies.find(m => m.id === parseInt(movieId));
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const foundMovie = movies.find(m => m.id === parseInt(movieId));
+    setMovie(foundMovie);
+    setLoading(false);
+  }, [movieId]);
+
+  if (loading) {
+    return <div className="booking-page">Завантаження...</div>;
+  }
 
   if (!movie) {
     return (
@@ -45,7 +56,9 @@ const Booking = () => {
                 ))}
               </div>
               {selectedTime && (
-                <p className="selected-time-info">Обраний час: <strong>{selectedTime}</strong></p>
+                <p className="selected-time-info">
+                  Обраний час: <strong>{selectedTime}</strong>
+                </p>
               )}
             </div>
           </div>

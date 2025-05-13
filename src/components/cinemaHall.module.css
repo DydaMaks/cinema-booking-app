@@ -24,7 +24,7 @@
     letter-spacing: 2px;
   }
   
-  .seatsGrid {
+  .seatsFlex {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -73,7 +73,7 @@
     opacity: 0.7;
   }
   
-  .legend {
+.legend {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -139,3 +139,5 @@
       font-size: 14px;
     }
   }
+
+  
