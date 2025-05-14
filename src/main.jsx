@@ -5,21 +5,22 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <App />
-    <ToastContainer 
-      position="bottom-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="colored"
-    />
+    
+    <ToastContainer
+    position="top-center"
+    autoClose={3000}
+    newestOnTop
+    closeOnClick
+    pauseOnFocusLoss
+    draggable
+  />
+
+
   </React.StrictMode>
 );

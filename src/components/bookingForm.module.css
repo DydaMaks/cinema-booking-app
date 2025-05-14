@@ -71,3 +71,10 @@
       padding: 1.5rem;
     }
   }
+  .toastSuccess {
+    background: #4CAF50 !important;
+    color: white !important;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+  }

@@ -1,32 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getAllBookedSeatsForMovie } from '../services/BookingService';
 import BookingForm from './BookingForm';
 import styles from '../components/cinemaHall.module.css';
 
-const CinemaHall = ({ movieId }) => {
+const CinemaHall = ({ movieId, selectedTime }) => {
   const rows = 6;
-  const seatsPerRow = 8;
+  const seatsPerRow = 7;
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const loadBookedSeats = useCallback(async () => {
+    try {
+      const seats = await getAllBookedSeatsForMovie(movieId, selectedTime);
+      setBookedSeats(seats);
+    } catch (error) {
+      console.error('Помилка завантаження місць:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [movieId, selectedTime]);
+
   useEffect(() => {
-    const loadBookedSeats = async () => {
-      try {
-        const seats = await getAllBookedSeatsForMovie(movieId);
-        setBookedSeats(seats);
-      } catch (error) {
-        console.error('Помилка завантаження місць:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
     loadBookedSeats();
-  }, [movieId]);
+    
+    const interval = setInterval(() => {
+      loadBookedSeats();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [loadBookedSeats]);
 
   const toggleSeat = (seatId) => {
-    // Додаємо перевірку на доступність місця перед додаванням до вибраних
     if (!bookedSeats.includes(seatId)) {
       setSelectedSeats(prev =>
         prev.includes(seatId)
@@ -37,9 +43,9 @@ const CinemaHall = ({ movieId }) => {
   };
 
   const handleBookingSuccess = () => {
+    loadBookedSeats();
     setSelectedSeats([]);
     setShowForm(false);
-    getAllBookedSeatsForMovie(movieId).then(seats => setBookedSeats(seats));
   };
 
   if (isLoading) return <div className={styles.loading}>Завантаження місць...</div>;
@@ -68,7 +74,7 @@ const CinemaHall = ({ movieId }) => {
                   }`}
                   onClick={() => toggleSeat(seatId)}
                   disabled={isBooked}
-                  data-number={seatIndex + 1}
+                  aria-label={`Місце ${seatId}`}
                 >
                   {seatIndex + 1}
                 </button>
@@ -100,6 +106,7 @@ const CinemaHall = ({ movieId }) => {
         <BookingForm
           movieId={movieId}
           selectedSeats={selectedSeats}
+          selectedTime={selectedTime}
           onSuccess={handleBookingSuccess}
         />
       )}

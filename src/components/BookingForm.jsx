@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../components/bookingForm.module.css';
 
-const BookingForm = ({ movieId, selectedSeats, onSuccess }) => {
+const BookingForm = ({ movieId, selectedSeats, selectedTime, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -12,44 +12,48 @@ const BookingForm = ({ movieId, selectedSeats, onSuccess }) => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
 
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Ім'я обов'язкове";
     if (!formData.phone.trim()) newErrors.phone = "Телефон обов'язковий";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email обов'язковий";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Невірний формат email";
-    }
+    if (!formData.email.trim()) newErrors.email = "Email обов'язковий";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate() && !isSubmitting) {
-      setIsSubmitting(true);
-      try {
-        const booking = {
-          movieId,
-          selectedSeats,
-          ...formData,
-          date: new Date().toISOString()
-        };
-        const success = await saveBooking(booking);
-        if (success) {
-          toast.success('Бронювання успішно завершено!');
-          onSuccess();
-        } else {
-          toast.error('Помилка при збереженні бронювання');
-        }
-      } catch (error) {
-        toast.error('Сталася помилка при бронюванні');
-        console.error(error);
-      } finally {
-        setIsSubmitting(false);
-      }
+    if (!validate() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      const booking = {
+        movieId: movieId.toString(),
+        selectedSeats,
+        showtime: selectedTime,
+        ...formData,
+        date: new Date().toISOString()
+      };
+
+      await saveBooking(booking);
+      
+      // Просте і надійне сповіщення
+      toast('✅ Бронювання успішне!', {
+        position: "top-center",
+        autoClose: 3000,
+        className: styles.toastSuccess
+      });
+      
+      onSuccess();
+    } catch (error) {
+      toast.error('❌ Помилка бронювання', {
+        position: "top-center",
+        autoClose: 3000
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -61,6 +65,7 @@ const BookingForm = ({ movieId, selectedSeats, onSuccess }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <h3>Дані для бронювання</h3>
+      
       <div className={styles.formGroup}>
         <label>Ім'я:</label>
         <input
@@ -69,9 +74,11 @@ const BookingForm = ({ movieId, selectedSeats, onSuccess }) => {
           value={formData.name}
           onChange={handleChange}
           className={errors.name ? styles.error : ''}
+          required
         />
         {errors.name && <span className={styles.errorText}>{errors.name}</span>}
       </div>
+      
       <div className={styles.formGroup}>
         <label>Телефон:</label>
         <input
@@ -80,9 +87,13 @@ const BookingForm = ({ movieId, selectedSeats, onSuccess }) => {
           value={formData.phone}
           onChange={handleChange}
           className={errors.phone ? styles.error : ''}
+          pattern="[0-9]{10,15}"
+          inputMode="numeric"
+          required
         />
         {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
       </div>
+      
       <div className={styles.formGroup}>
         <label>Email:</label>
         <input
@@ -91,20 +102,29 @@ const BookingForm = ({ movieId, selectedSeats, onSuccess }) => {
           value={formData.email}
           onChange={handleChange}
           className={errors.email ? styles.error : ''}
+          required
         />
         {errors.email && <span className={styles.errorText}>{errors.email}</span>}
       </div>
+      
       <div className={styles.selectedSeats}>
-        <p>Вибрані місця: {selectedSeats.join(', ')}</p>
+    
+        <p><strong>Обрано місць:</strong> {selectedSeats.length}</p>
+        <p><strong>Час сеансу:</strong> {selectedTime}</p>
       </div>
+    
       <button 
         type="submit" 
         className={styles.submitButton}
         disabled={isSubmitting}
+        
       >
         {isSubmitting ? 'Обробка...' : 'Підтвердити бронювання'}
+      
+        
       </button>
     </form>
+
   );
 };
 

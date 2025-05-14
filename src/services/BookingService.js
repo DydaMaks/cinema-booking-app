@@ -1,34 +1,34 @@
-const BOOKINGS_KEY = 'cinema_bookings_v2';
+const BOOKINGS_KEY = 'cinema_bookings_final_v2';
 
-export const saveBooking = (bookingData) => {
+export const saveBooking = async (bookingData) => {
   try {
     const bookings = getBookings();
     const newBooking = {
       ...bookingData,
-      id: Date.now(),
+      id: Date.now().toString(),
+      movieId: bookingData.movieId.toString(),
       createdAt: new Date().toISOString()
     };
     localStorage.setItem(BOOKINGS_KEY, JSON.stringify([...bookings, newBooking]));
-    return true;
+    return newBooking;
   } catch (error) {
     console.error('Помилка збереження бронювання:', error);
-    return false;
+    throw error;
   }
 };
 
-export const getBookingsForMovie = (movieId) => {
+export const getBookingsForMovie = (movieId, showtime = null) => {
   const bookings = getBookings();
-  return bookings.filter(booking => booking.movieId === movieId.toString());
+  return bookings.filter(booking => {
+    const matchesMovie = booking.movieId === movieId.toString();
+    const matchesTime = showtime ? booking.showtime === showtime : true;
+    return matchesMovie && matchesTime;
+  });
 };
 
-export const getAllBookedSeatsForMovie = (movieId) => {
-  const bookings = getBookingsForMovie(movieId);
+export const getAllBookedSeatsForMovie = async (movieId, showtime) => {
+  const bookings = getBookingsForMovie(movieId, showtime);
   return bookings.flatMap(booking => booking.selectedSeats);
-};
-
-export const isSeatAvailable = (movieId, seatId) => {
-  const bookedSeats = getAllBookedSeatsForMovie(movieId);
-  return !bookedSeats.includes(seatId);
 };
 
 const getBookings = () => {

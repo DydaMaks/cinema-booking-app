@@ -19,3 +19,23 @@ body {
   padding: 0;
   color: var(--dark-brown);
 }
+.Toastify__toast-container {
+  z-index: 9999;
+  width: auto;
+  max-width: 500px;
+}
+
+.Toastify__toast {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+
+.Toastify__toast--success {
+  background-color: #4caf50;
+}
+
+.Toastify__toast--error {
+  background-color: #f44336;
+}

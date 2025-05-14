@@ -140,4 +140,54 @@
     }
   }
 
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-main);
+    font-size: 1.2rem;
+  }
+  
+  .booked {
+    background-color: #f44336 !important;
+    cursor: not-allowed;
+    position: relative;
+    opacity: 0.8;
+  }
+  
+  .booked::after {
+    content: "✖";
+    position: absolute;
+    font-size: 18px;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .selected {
+    background-color: #2196F3 !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.7);
+  }
+  
+  .seatsGrid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+  
+  .row {
+    display: contents;
+  }
+  
+  .rowLabel {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--text-main);
+  }
   

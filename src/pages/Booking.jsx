@@ -6,7 +6,7 @@ import './Booking.css';
 
 const Booking = () => {
   const { movieId } = useParams();
-  const [selectedTime, setSelectedTime] = useState('');
+  const [selectedTime, setSelectedTime] = useState(null);
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,6 +15,10 @@ const Booking = () => {
     setMovie(foundMovie);
     setLoading(false);
   }, [movieId]);
+
+  const handleTimeSelect = (time) => {
+    setSelectedTime(time);
+  };
 
   if (loading) {
     return <div className="booking-page">Завантаження...</div>;
@@ -28,10 +32,6 @@ const Booking = () => {
       </div>
     );
   }
-
-  const handleTimeSelect = (time) => {
-    setSelectedTime(time);
-  };
 
   return (
     <div className="booking-page">
@@ -67,7 +67,10 @@ const Booking = () => {
         {selectedTime && (
           <div className="cinema-hall-container">
             <h3>Оберіть місця для сеансу о {selectedTime}</h3>
-            <CinemaHall movieId={movieId} />
+            <CinemaHall 
+              movieId={movieId} 
+              selectedTime={selectedTime} 
+            />
           </div>
         )}
       </div>
